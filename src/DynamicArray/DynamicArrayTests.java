@@ -13,9 +13,8 @@ public class DynamicArrayTests {
     }
 
     @Test
-    public void get_data_Validation() {
+    public void get_data_check() {
         DynamicArray<Integer> array = new DynamicArray<Integer>(1);
-
         array.set(0, 1);
 
         Object expected = 1;
@@ -34,5 +33,38 @@ public class DynamicArrayTests {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void set_data_check() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+        array.set(0, 1);
+
+        Object expected = 1;
+        Object actual = array.get(0);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void set_indexEqualsSize() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.set(0, 1);
+        array.set(1, 22);
+
+        Object expected = 22;
+        Object actual = array.get(1);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void set_indexGreaterSize() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.set(0, 1);
+        array.set(2, 22);
+
+        Object expected = 22;
+        Object actual = array.get(2);
+        assertEquals(expected, actual);
+    }
 
 }
