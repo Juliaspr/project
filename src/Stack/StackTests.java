@@ -17,4 +17,13 @@ public class StackTests {
         boolean actual = stack.isEmpty();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void size_Empty() {
+        Stack stack = new Stack();
+
+        int expected = 0;
+        int actual = stack.size();
+        assertEquals(expected, actual);
+    }
 }
