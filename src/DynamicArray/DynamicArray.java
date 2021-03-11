@@ -6,6 +6,7 @@ public class DynamicArray<T> {
     T[] array;
     int SIZE_DEFAULT = 0;
 
+    String error_outOfBounds = "the array is out of bounds";
     String error_wrongSize = "the array size cannot be less than 1";
 
     public DynamicArray() {
@@ -44,5 +45,13 @@ public class DynamicArray<T> {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
+    }
+
+    public String get_errorMessage(String error) {
+        if (error == error_wrongSize) {
+            return error_wrongSize;
+        }
+
+        return "No error message";
     }
 }
