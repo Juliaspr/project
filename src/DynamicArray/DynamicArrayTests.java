@@ -116,4 +116,18 @@ public class DynamicArrayTests {
 
         assertThrows(RuntimeException.class, () -> array.resize(-1), error_message);
     }
+
+    @Test
+    public void getSize_check() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        int expected = 1;
+        int actual = array.getSize();
+        assertEquals(expected, actual);
+
+        array.resize(20);
+        expected = 20;
+        actual = array.getSize();
+        assertEquals(expected, actual);
+    }
 }
