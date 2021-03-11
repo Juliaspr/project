@@ -14,4 +14,17 @@ public class DynamicArrayTests {
         int actual = array.getSize();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void set_size_check() {
+        DynamicArray array = new DynamicArray(1);
+
+        array.set(0, 1);
+
+        int expected = 1;
+        int actual = array.getSize();
+        assertEquals(expected, actual);
+    }
+
+
 }
