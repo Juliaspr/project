@@ -137,8 +137,10 @@ public class DynamicArrayTests {
 
         array.set(0, 111);
         array.set(1, 234);
-        array.set(2, 444);
-        array.set(3, 114231);
+        array.set(2, 234);
+        array.set(3, 234);
+        array.set(4, 444);
+        array.set(5, 114231);
 
         int expected = 1;
         int actual = array.findFirst(234);
@@ -151,11 +153,43 @@ public class DynamicArrayTests {
 
         array.set(0, 111);
         array.set(1, 234);
+        array.set(2, 234);
+        array.set(3, 234);
+        array.set(4, 444);
+        array.set(5, 114231);
+
+        int expected = -1;
+        int actual = array.findFirst(5);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findLast_index_check() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.set(0, 111);
+        array.set(1, 234);
+        array.set(2, 234);
+        array.set(3, 234);
+        array.set(4, 444);
+        array.set(5, 114231);
+
+        int expected = 3;
+        int actual = array.findLast(234);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findLast_NotExistingElement() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.set(0, 111);
+        array.set(1, 234);
         array.set(2, 444);
         array.set(3, 114231);
 
         int expected = -1;
-        int actual = array.findFirst(5);
+        int actual = array.findLast(5);
         assertEquals(expected, actual);
     }
 }

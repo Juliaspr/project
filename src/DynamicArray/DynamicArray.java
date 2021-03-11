@@ -58,6 +58,21 @@ public class DynamicArray<T> {
         return -1;
     }
 
+    public int findLast(T value) {
+        // возвращает индекс последнего вхождения
+        // если не находит, возвращает -1.
+
+        int index = -1;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(value)) {
+                index = i;
+            }
+        }
+
+        return index;
+    }
+
     public void printAll() {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
