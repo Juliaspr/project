@@ -9,7 +9,10 @@ public class Main {
         array.set(1, 111);
         array.set(2, 111);
         array.set(3, 111);
+        array.printAll();
+        System.out.println();
 
+        array.add(6);
         array.printAll();
     }
 }

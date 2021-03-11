@@ -25,7 +25,7 @@ public class DynamicArray<T> {
         return array[index];
     }
 
-    public void set(int index, T data) {
+    public void insert(int index, T data) {
         if (index >= array.length) {
             resize(index + 1);
         }
@@ -71,6 +71,12 @@ public class DynamicArray<T> {
         }
 
         return index;
+    }
+
+    public void add(T value) {
+        resize(array.length + 1);
+
+        array[array.length - 1] = value;
     }
 
     public void printAll() {
