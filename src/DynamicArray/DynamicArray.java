@@ -7,4 +7,8 @@ public class DynamicArray<T> {
     public DynamicArray() {
         array = (T[]) new Object[SIZE_DEFAULT];
     }
+
+    public int getSize() {
+        return array.length;
+    }
 }
