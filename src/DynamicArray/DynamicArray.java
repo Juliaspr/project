@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class DynamicArray<T> {
     T[] array;
-    int SIZE_DEFAULT = 1;
+    int SIZE_DEFAULT = 0;
 
     String error_wrongSize = "the array size cannot be less than 1";
 
