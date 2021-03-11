@@ -23,6 +23,16 @@ public class DynamicArrayTests {
     }
 
     @Test
+    void get_IndexOutOfBounds() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        String error_message = array.get_errorMessage("error_outOfBounds");
+
+        assertThrows(RuntimeException.class, () -> array.get(-1), error_message);
+        assertThrows(RuntimeException.class, () -> array.get(22), error_message);
+    }
+
+    @Test
     public void set_size_check() {
         DynamicArray<Integer> array = new DynamicArray<Integer>(1);
 

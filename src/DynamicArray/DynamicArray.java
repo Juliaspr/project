@@ -18,6 +18,10 @@ public class DynamicArray<T> {
     }
 
     public T get(int index) {
+        if (index < 0 || index > array.length) {
+            throw new RuntimeException(error_outOfBounds);
+        }
+
         return array[index];
     }
 
