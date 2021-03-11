@@ -45,6 +45,19 @@ public class DynamicArray<T> {
         return array.length;
     }
 
+    public int findFirst(T value) {
+        // возвращает индекс первого вхождения
+        // если не находит, возвращает -1.
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(value)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     public void printAll() {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);

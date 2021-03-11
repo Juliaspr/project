@@ -130,4 +130,32 @@ public class DynamicArrayTests {
         actual = array.getSize();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void findFirst_index_check() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.set(0, 111);
+        array.set(1, 234);
+        array.set(2, 444);
+        array.set(3, 114231);
+
+        int expected = 1;
+        int actual = array.findFirst(234);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findFirst_NotExistingElement() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.set(0, 111);
+        array.set(1, 234);
+        array.set(2, 444);
+        array.set(3, 114231);
+
+        int expected = -1;
+        int actual = array.findFirst(5);
+        assertEquals(expected, actual);
+    }
 }
