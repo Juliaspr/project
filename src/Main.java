@@ -8,17 +8,14 @@ public class Main {
         array.set(0, 1);
         array.set(1, 2);
         array.set(2, 3);
-
         array.printAll();
-
         System.out.println();
 
-        array.resize(4);
+        array.resize(3);
         array.printAll();
-
         System.out.println();
 
-        array.resize(10);
+        array.set(2, 4);
         array.printAll();
 
     }
