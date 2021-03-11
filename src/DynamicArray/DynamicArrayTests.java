@@ -33,6 +33,65 @@ public class DynamicArrayTests {
     }
 
     @Test
+    public void remove_size_check() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(0);
+
+        array.insert(0, 1);
+        array.insert(1, 2);
+        array.insert(2, 3);
+        array.remove(1);
+
+
+        int expected = 2;
+        int actual = array.getSize();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void remove_data_check() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.insert(0, 1);
+        array.insert(1, 2);
+        array.insert(2, 3);
+        array.remove(1);
+
+        Object expected = 3;
+        Object actual = array.get(1);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void remove_indexEqualsSize() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.insert(0, 1);
+
+        String error_message = array.get_errorMessage("error_outOfBounds");
+        assertThrows(RuntimeException.class, () -> array.remove(1), error_message);
+    }
+
+    @Test
+    public void remove_indexGreaterSize() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.insert(0, 1);
+
+        String error_message = array.get_errorMessage("error_outOfBounds");
+        assertThrows(RuntimeException.class, () -> array.remove(5), error_message);
+    }
+
+    @Test
+    public void remove_indexNegative() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        array.insert(0, 1);
+
+        String error_message = array.get_errorMessage("error_outOfBounds");
+        assertThrows(RuntimeException.class, () -> array.remove(-1), error_message);
+    }
+
+    @Test
     public void insert_size_check() {
         DynamicArray<Integer> array = new DynamicArray<Integer>(1);
 
@@ -75,6 +134,15 @@ public class DynamicArrayTests {
         Object expected = 22;
         Object actual = array.get(2);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void insert_indexNegative() {
+        DynamicArray<Integer> array = new DynamicArray<Integer>(1);
+
+        String error_message = array.get_errorMessage("error_outOfBounds");
+
+        assertThrows(RuntimeException.class, () -> array.insert(-1, 1), error_message);
     }
 
     @Test

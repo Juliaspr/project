@@ -30,7 +30,27 @@ public class DynamicArray<T> {
             resize(index + 1);
         }
 
+        if (index < 0) {
+            throw new RuntimeException(error_outOfBounds);
+        }
+
         array[index] = data;
+    }
+
+    public void remove(int index) {
+        if (index < 0 || index >= array.length) {
+            throw new RuntimeException(error_outOfBounds);
+        }
+
+        T[] newArray = (T[]) new Object[array.length - 1];
+
+        System.arraycopy(array, 0, newArray, 0, index);
+
+        for (int i = index + 1; i < array.length; i++) {
+            newArray[i-1] = array[i];
+        }
+
+        array = newArray;
     }
 
     public void resize(int newSize){
