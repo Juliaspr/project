@@ -13,8 +13,15 @@ public class Element<T> {
         return next;
     }
 
+    public void setNext(Element nextElement) {
+        next = nextElement;
+    }
+
     public Element<T> getPrev() {
         return prev;
+    }
+    public void setPrev(Element prevElement) {
+        prev = prevElement;
     }
 
     public T getData() {
