@@ -9,11 +9,11 @@ public class Element<T> {
         this.data = data;
     }
 
-    public Element getNext() {
+    public Element<T> getNext() {
         return next;
     }
 
-    public Element getPrev() {
+    public Element<T> getPrev() {
         return prev;
     }
 
