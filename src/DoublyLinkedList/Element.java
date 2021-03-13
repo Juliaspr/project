@@ -17,4 +17,8 @@ public class Element<T> {
         return prev;
     }
 
+    public T getData() {
+        return data;
+    }
+
 }
