@@ -1,9 +1,9 @@
 package DoublyLinkedList;
 
 public class Element<T> {
-    T data;
-    Element<T> next;
-    Element<T> prev;
+    private T data;
+    private Element<T> next;
+    private Element<T> prev;
 
     public Element(T data) {
         this.data = data;
