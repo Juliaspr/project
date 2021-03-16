@@ -5,6 +5,9 @@ public class Element<T> {
     private Element<T> next;
     private Element<T> prev;
 
+    public Element() {
+    }
+
     public Element(T data) {
         this.data = data;
     }

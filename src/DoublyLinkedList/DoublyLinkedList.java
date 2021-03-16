@@ -24,6 +24,26 @@ public class DoublyLinkedList<T> {
         newElement.setNext(start);
         newElement.setPrev(null);
         start.setPrev(newElement);
+        start = newElement;
+        size++;
+    }
+
+    public void append(T value) {
+        Element<T> newElement = new Element<T>(value);
+
+        if (end == null) {
+            /* If list is empty */
+            newElement.setNext(null);
+            newElement.setPrev(null);
+            start = newElement;
+            end = newElement;
+            size++;
+            return;
+        }
+
+        end.setNext(newElement);
+        newElement.setNext(null);
+        newElement.setPrev(end);
         end = newElement;
         size++;
     }
@@ -35,7 +55,7 @@ public class DoublyLinkedList<T> {
             return;
         }
 
-        Element temp = start;
+        Element<T> temp = start;
         temp.setNext(start.getNext());
 
         while (temp.getNext() != null) {
