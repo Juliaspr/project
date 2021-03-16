@@ -15,5 +15,7 @@ public class Main {
         list.insert(5);
         list.insert(6);
         list.printAll();
+
+        System.out.println(list.returnElement(2).getData());
     }
 }

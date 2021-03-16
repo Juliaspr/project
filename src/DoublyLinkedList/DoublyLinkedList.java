@@ -5,8 +5,27 @@ public class DoublyLinkedList<T> {
     private Element<T> end;
     private int size = 0;
 
+    private String ERROR_ElementNotFound = "Element not found";
+
     public int getSize() {
         return size;
+    }
+
+    public Element<T> returnElement(int id) {
+        Element<T> temp = start;
+        temp.setNext(start.getNext());
+        int counter = 0;
+
+        while (temp.getNext() != null && counter != id) {
+            temp = temp.getNext();
+            counter++;
+        }
+
+        if (counter == id) {
+            return temp;
+        } else {
+            throw new RuntimeException(ERROR_ElementNotFound);
+        }
     }
 
     public void insert(T value) {
