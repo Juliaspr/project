@@ -191,4 +191,20 @@ public class DoublyLinkedListTests {
         assertThrows(RuntimeException.class, () -> list.set(2, 1), error_message);
         assertThrows(RuntimeException.class, () -> list.set(-2, 2), error_message);
     }
+
+    @Test
+    public void append_DataValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+
+        int expected = 1;
+        int actual = list.getElementByValue(1).getData();
+        assertEquals(expected, actual);
+    }
 }

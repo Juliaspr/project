@@ -71,6 +71,21 @@ public class DoublyLinkedList<T> {
         throw new IllegalArgumentException(ERROR_IndexOutOfRange);
     }
 
+    public Element<T> getElementByValue(T value) {
+        Element<T> temp = start;
+        temp.setNext(start.getNext());
+
+        while (temp.getNext() != null && !temp.getData().equals(value)) {
+            temp = temp.getNext();
+        }
+
+        if (temp.getData().equals(value)) {
+            return temp;
+        }
+
+        throw new IllegalArgumentException(ERROR_IndexOutOfRange);
+    }
+
     public void insert(T value) {
         Element<T> newElement = new Element<T>(value);
 
