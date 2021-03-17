@@ -3,13 +3,23 @@ package Qeue;
 import DynamicArray.DynamicArray;
 
 public class Qeue<T> {
-    int size = 0;
-    DynamicArray<T> array = new DynamicArray<T>(size);
+    private int size = 0;
+    private DynamicArray<T> array = new DynamicArray<T>(size);
 
     public void enqeue(T data) {
         array.add(data);
         size++;
     }
 
+    public T peek() {
+        return array.get(0);
+    }
 
+    public int getSize() {
+        return size;
+    }
+
+    public void printAll() {
+        array.printAll();
+    }
 }
