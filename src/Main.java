@@ -14,10 +14,7 @@ public class Main {
         list.append(6);
         list.printAll();
 
-        list.removeElement(5);
-        list.printAll();
-
-        list.removeElement(4);
+       list.set(0, 0);
         list.printAll();
 
     }

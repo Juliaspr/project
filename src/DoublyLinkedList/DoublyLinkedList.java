@@ -24,9 +24,9 @@ public class DoublyLinkedList<T> {
 
         if (counter == id) {
             return temp;
-        } else {
-            throw new IllegalArgumentException(ERROR_IndexOutOfRange);
         }
+
+        throw new IllegalArgumentException(ERROR_IndexOutOfRange);
     }
 
     public void removeElement(int id) {
@@ -108,6 +108,24 @@ public class DoublyLinkedList<T> {
         newElement.setPrev(end);
         end = newElement;
         size++;
+    }
+
+    public void set(int id, T data) {
+        Element<T> temp = start;
+        temp.setNext(start.getNext());
+        int counter = 0;
+
+        while (temp.getNext() != null && counter != id) {
+            temp = temp.getNext();
+            counter++;
+        }
+
+        if (counter == id) {
+            temp.setData(data);
+            return;
+        }
+
+        throw new IllegalArgumentException(ERROR_IndexOutOfRange);
     }
 
     public void printAll() {

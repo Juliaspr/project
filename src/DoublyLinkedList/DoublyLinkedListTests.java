@@ -152,4 +152,43 @@ public class DoublyLinkedListTests {
         assertThrows(RuntimeException.class, () -> list.removeElement(2), error_message);
         assertThrows(RuntimeException.class, () -> list.removeElement(-2), error_message);
     }
+
+    @Test
+    public void set_DataValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        list.set(0, 0);
+
+
+        int expected = 0;
+        int actual = list.getElement(0).getData();
+        assertEquals(expected, actual);
+
+        list.set(4, 4);
+        expected = 4;
+        actual = list.getElement(4).getData();
+        assertEquals(expected, actual);
+
+        list.set(2, 2);
+        expected = 2;
+        actual = list.getElement(2).getData();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void set_wrongIndex_ThrowsException() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+        list.append(1);
+
+        String error_message = list.get_errorMessage("ERROR_IndexOutOfRange");
+
+        assertThrows(RuntimeException.class, () -> list.set(2, 1), error_message);
+        assertThrows(RuntimeException.class, () -> list.set(-2, 2), error_message);
+    }
 }
