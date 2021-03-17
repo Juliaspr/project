@@ -14,10 +14,11 @@ public class Main {
         list.append(6);
         list.printAll();
 
-        list.set(0, 0);
+        list.removeElementByValue(1);
         list.printAll();
 
-        System.out.println(list.getElementByValue(2).getData());
+        list.removeElementByValue(2);
+        list.printAll();
 
     }
 }

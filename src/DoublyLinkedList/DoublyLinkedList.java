@@ -83,7 +83,47 @@ public class DoublyLinkedList<T> {
             return temp;
         }
 
-        throw new IllegalArgumentException(ERROR_IndexOutOfRange);
+        throw new IllegalArgumentException(ERROR_ElementNotFound);
+    }
+
+    public void removeElementByValue(T value) {
+        Element<T> temp = start;
+        temp.setNext(start.getNext());
+
+        while (temp.getNext() != null && !temp.getData().equals(value)) {
+            // iterating over the list
+
+            temp = temp.getNext();
+        }
+
+        if (temp.getData().equals(value)) {
+            // if element is found
+
+            if (temp.getPrev() == null) {
+                // if it's the first element
+
+                start = temp.getNext();
+                start.setPrev(null);
+                return;
+            }
+
+            if (temp.getNext() == null) {
+                // if it's the last element
+
+                end = temp.getPrev();
+                end.setNext(null);
+                return;
+            }
+
+            Element<T> prevElement = temp.getPrev();
+            Element<T> nextElement = temp.getNext();
+            nextElement.setPrev(prevElement);
+            prevElement.setNext(nextElement);
+            size--;
+            return;
+        }
+
+        throw new IllegalArgumentException(ERROR_ElementNotFound);
     }
 
     public void insert(T value) {

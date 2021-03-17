@@ -193,7 +193,7 @@ public class DoublyLinkedListTests {
     }
 
     @Test
-    public void append_DataValidation() {
+    public void getElementByValue_DataValidation() {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
 
         list.append(4);
@@ -206,5 +206,61 @@ public class DoublyLinkedListTests {
         int expected = 1;
         int actual = list.getElementByValue(1).getData();
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getElementByValue_ValueDoesntExist_ThrowsException() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+        list.append(1);
+
+        String error_message = list.get_errorMessage("ERROR_ElementNotFound");
+
+        assertThrows(RuntimeException.class, () -> list.getElementByValue(2), error_message);
+    }
+
+    @Test
+    public void removeElementByValue_sizeValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        list.removeElementByValue(1);
+
+
+        int expected = 4;
+        int actual = list.getSize();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeElementByValue_dataValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        list.removeElementByValue(1);
+
+
+        int expected = 0;
+        int actual = list.getElement(3).getData();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeElementByValue_ValueDoesntExist_ThrowsException() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+        list.append(1);
+
+        String error_message = list.get_errorMessage("ERROR_ElementNotFound");
+
+        assertThrows(RuntimeException.class, () -> list.removeElementByValue(2), error_message);
     }
 }
