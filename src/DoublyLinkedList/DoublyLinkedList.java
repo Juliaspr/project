@@ -5,11 +5,22 @@ public class DoublyLinkedList<T> {
     private Element<T> end;
     private int size = 0;
 
-    private String ERROR_ElementNotFound = "Element not found";
-    private String ERROR_IndexOutOfRange = "Index is out of range";
+    private final String ERROR_ElementNotFound = "Element not found";
+    private final String ERROR_IndexOutOfRange = "Index is out of range";
 
     public int getSize() {
         return size;
+    }
+
+    public boolean contains(T data) {
+        Element<T> temp = start;
+        temp.setNext(start.getNext());
+
+        while (temp.getNext() != null && !temp.getData().equals(data)) {
+            temp = temp.getNext();
+        }
+
+        return temp.getData().equals(data);
     }
 
     public Element<T> getElement(int id) {
@@ -186,14 +197,17 @@ public class DoublyLinkedList<T> {
     public void insertBefore(Element<T>  elementToFind, Element<T>  elementToInsert) {
         Element<T> newElement = new Element<T> (elementToInsert.getData());
 
-        if (elementToFind == start) {
-            // if the node is to be inserted before head
+        if (!contains(elementToFind.getData())) {
+            throw new IllegalArgumentException(ERROR_ElementNotFound);
+        }
 
+        size++;
+
+        if (elementToFind == start) {
             newElement.setPrev(null);
             newElement.setNext(start);
             start.setPrev(newElement);
             start = newElement;
-            size++;
             return;
         }
 
@@ -201,7 +215,27 @@ public class DoublyLinkedList<T> {
         newElement.setNext(elementToFind);
         elementToFind.getPrev().setNext(newElement);
         elementToFind.setPrev(newElement);
+    }
+
+    public void insertAfter(Element<T>  elementToFind, Element<T>  elementToInsert) {
+        Element<T> newElement = new Element<T> (elementToInsert.getData());
+
+        if (!contains(elementToFind.getData())) {
+            throw new IllegalArgumentException(ERROR_ElementNotFound);
+        }
+
         size++;
+
+        newElement.setNext( elementToFind.getNext());
+        elementToFind.setNext(newElement);
+        newElement.setPrev(elementToFind);
+
+        if (newElement.getNext() != null) {
+            newElement.getNext().setPrev(newElement);
+            return;
+        }
+
+        end = newElement;
     }
 
     public void printAll() {

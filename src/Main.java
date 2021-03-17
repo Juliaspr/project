@@ -15,9 +15,9 @@ public class Main {
         list.printAll();
 
 
-        Element<Integer> node = list.getElement(4);
-        Element<Integer> newElement = new Element<Integer>(4);
-        list.insertBefore(node, newElement);
+        Element<Integer> node = list.getElement(5);
+        Element<Integer> newElement = new Element<Integer>(4444);
+        list.insertAfter(node, newElement);
         list.printAll();
 
     }

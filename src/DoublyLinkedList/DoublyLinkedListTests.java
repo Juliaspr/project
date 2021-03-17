@@ -274,7 +274,7 @@ public class DoublyLinkedListTests {
         list.append(1);
         list.append(0);
 
-        Element newElement = new Element(10);
+        Element<Integer> newElement = new Element<Integer>(10);
         list.insertBefore(list.getElementByValue(2), newElement);
 
         int expected = 6;
@@ -310,5 +310,53 @@ public class DoublyLinkedListTests {
         Element<Integer> element = new Element<Integer>(10);
         Element<Integer> newElement = new Element<Integer>(11);
         assertThrows(RuntimeException.class, () -> list.insertBefore(element, newElement), error_message);
+    }
+
+    @Test
+    public void insertAfter_sizeValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        Element<Integer> newElement = new Element<Integer>(10);
+        list.insertAfter(list.getElementByValue(2), newElement);
+
+        int expected = 6;
+        int actual = list.getSize();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void insertAfter_valueValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        Element<Integer> newElement = new Element<Integer>(10);
+        list.insertAfter(list.getElement(2), newElement);
+
+        int expected = 10;
+        int actual = list.getElement(3).getData();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void insertAfter_ElementDoesntExist_ThrowsException() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+        list.append(1);
+
+        String error_message = list.get_errorMessage("ERROR_ElementNotFound");
+
+        Element<Integer> element = new Element<Integer>(10);
+        Element<Integer> newElement = new Element<Integer>(11);
+        assertThrows(RuntimeException.class, () -> list.insertAfter(element, newElement), error_message);
     }
 }
