@@ -11,6 +11,11 @@ public class Qeue<T> {
         size++;
     }
 
+    public void deqeue() {
+        array.remove(0);
+        size--;
+    }
+
     public T peek() {
         return array.get(0);
     }
