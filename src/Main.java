@@ -16,6 +16,6 @@ public class Main {
         list.insert(6);
         list.printAll();
 
-        System.out.println(list.returnElement(2).getData());
+        System.out.println(list.getElement(2).getData());
     }
 }

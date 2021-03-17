@@ -6,12 +6,13 @@ public class DoublyLinkedList<T> {
     private int size = 0;
 
     private String ERROR_ElementNotFound = "Element not found";
+    private String ERROR_IndexOutOfRange = "Index is out of range";
 
     public int getSize() {
         return size;
     }
 
-    public Element<T> returnElement(int id) {
+    public Element<T> getElement(int id) {
         Element<T> temp = start;
         temp.setNext(start.getNext());
         int counter = 0;
@@ -24,7 +25,7 @@ public class DoublyLinkedList<T> {
         if (counter == id) {
             return temp;
         } else {
-            throw new RuntimeException(ERROR_ElementNotFound);
+            throw new RuntimeException(ERROR_IndexOutOfRange);
         }
     }
 
@@ -82,5 +83,15 @@ public class DoublyLinkedList<T> {
             temp = temp.getNext();
         }
         System.out.println(temp.getData());
+    }
+
+    public String get_errorMessage(String error) {
+
+        return switch (error) {
+            case "ERROR_ElementNotFound" -> ERROR_ElementNotFound;
+            case "ERROR_IndexOutOfRange" -> ERROR_IndexOutOfRange;
+            default -> "not found";
+        };
+
     }
 }
