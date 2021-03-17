@@ -183,6 +183,27 @@ public class DoublyLinkedList<T> {
         throw new IllegalArgumentException(ERROR_IndexOutOfRange);
     }
 
+    public void insertBefore(Element<T>  elementToFind, Element<T>  elementToInsert) {
+        Element<T> newElement = new Element<T> (elementToInsert.getData());
+
+        if (elementToFind == start) {
+            // if the node is to be inserted before head
+
+            newElement.setPrev(null);
+            newElement.setNext(start);
+            start.setPrev(newElement);
+            start = newElement;
+            size++;
+            return;
+        }
+
+        newElement.setPrev(elementToFind.getPrev());
+        newElement.setNext(elementToFind);
+        elementToFind.getPrev().setNext(newElement);
+        elementToFind.setPrev(newElement);
+        size++;
+    }
+
     public void printAll() {
         if (size == 0) {
             /* If list is empty */

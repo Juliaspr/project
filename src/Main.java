@@ -14,10 +14,10 @@ public class Main {
         list.append(6);
         list.printAll();
 
-        list.removeElementByValue(1);
-        list.printAll();
 
-        list.removeElementByValue(2);
+        Element<Integer> node = list.getElement(4);
+        Element<Integer> newElement = new Element<Integer>(4);
+        list.insertBefore(node, newElement);
         list.printAll();
 
     }
