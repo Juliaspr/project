@@ -86,12 +86,70 @@ public class DoublyLinkedListTests {
     }
 
     @Test
-    public void getElement_indexOutOfRange_ThrowsException() {
+    public void getElement_wrongIndex_ThrowsException() {
         DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
         list.append(1);
 
         String error_message = list.get_errorMessage("ERROR_IndexOutOfRange");
 
         assertThrows(RuntimeException.class, () -> list.getElement(2), error_message);
+        assertThrows(RuntimeException.class, () -> list.getElement(-2), error_message);
+    }
+
+    @Test
+    public void removeElement_sizeValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        list.removeElement(1);
+
+
+        int expected = 4;
+        int actual = list.getSize();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeElement_dataValidation() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+
+        list.append(4);
+        list.append(3);
+        list.append(2);
+        list.append(1);
+        list.append(0);
+
+        list.removeElement(1);
+
+
+        int expected = 2;
+        int actual = list.getElement(1).getData();
+        assertEquals(expected, actual);
+
+        list.removeElement(0);
+        expected = 2;
+        actual = list.getElement(0).getData();
+        assertEquals(expected, actual);
+
+        list.removeElement(2);
+        expected = 1;
+        actual = list.getElement(1).getData();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeElement_wrongIndex_ThrowsException() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
+        list.append(1);
+
+        String error_message = list.get_errorMessage("ERROR_IndexOutOfRange");
+
+        assertThrows(RuntimeException.class, () -> list.removeElement(2), error_message);
+        assertThrows(RuntimeException.class, () -> list.removeElement(-2), error_message);
     }
 }

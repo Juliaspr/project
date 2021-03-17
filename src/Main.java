@@ -9,13 +9,16 @@ public class Main {
         list.append(1);
         list.append(2);
         list.append(3);
-        list.printAll();
-        
-        list.insert(4);
-        list.insert(5);
-        list.insert(6);
+        list.append(4);
+        list.append(5);
+        list.append(6);
         list.printAll();
 
-        System.out.println(list.getElement(2).getData());
+        list.removeElement(5);
+        list.printAll();
+
+        list.removeElement(4);
+        list.printAll();
+
     }
 }
