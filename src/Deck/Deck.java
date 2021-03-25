@@ -9,4 +9,8 @@ public class Deck<T> {
     public void pushFront(T value) {
         array.addFront(value);
     }
+
+    public void popFront() {
+        array.remove(0);
+    }
 }
