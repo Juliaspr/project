@@ -29,6 +29,10 @@ public class Deck<T> {
         array.remove(getSize() - 1);
     }
 
+    public T peekBack() {
+        return array.get(getSize() - 1);
+    }
+
     public int getSize() {
         return array.getSize();
     }
