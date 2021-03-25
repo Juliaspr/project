@@ -18,6 +18,11 @@ public class Deck<T> {
     }
 
     public T peekFront() {
+
+        if (array.getSize() <= 0) {
+            throw new RuntimeException(deckIsEmptyError);
+        }
+
         return array.get(0);
     }
 
@@ -30,6 +35,11 @@ public class Deck<T> {
     }
 
     public T peekBack() {
+
+        if (array.getSize() <= 0) {
+            throw new RuntimeException(deckIsEmptyError);
+        }
+
         return array.get(getSize() - 1);
     }
 
