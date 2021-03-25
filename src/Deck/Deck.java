@@ -13,4 +13,8 @@ public class Deck<T> {
     public void popFront() {
         array.remove(0);
     }
+
+    public T peekFront() {
+        return array.get(0);
+    }
 }
