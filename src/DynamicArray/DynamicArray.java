@@ -99,6 +99,16 @@ public class DynamicArray<T> {
         array[array.length - 1] = value;
     }
 
+    public void addFront(T value) {
+        resize(array.length + 1);
+
+        for (int i = array.length - 1; i > 0; i--) {
+            array[i] = array[i-1];
+        }
+
+        insert(0, value);
+    }
+
     public void printAll() {
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
