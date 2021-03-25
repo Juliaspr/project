@@ -25,6 +25,10 @@ public class Deck<T> {
         array.add(value);
     }
 
+    public void popBack() {
+        array.remove(getSize() - 1);
+    }
+
     public int getSize() {
         return array.getSize();
     }
