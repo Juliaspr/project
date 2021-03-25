@@ -150,4 +150,34 @@ public class DeckTests {
         int actual = deck.peekFront();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void popBack_sizeValidation() {
+        Deck<Integer> deck = new Deck<Integer>();
+
+        deck.pushFront(0);
+        deck.pushFront(0);
+        deck.pushFront(0);
+
+        deck.popBack();
+
+        int expected = 2;
+        int actual = deck.getSize();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void popBack_dataValidation() {
+        Deck<Integer> deck = new Deck<Integer>();
+
+        deck.pushBack(1);
+        deck.pushBack(2);
+        deck.pushBack(3);
+
+        deck.popBack();
+
+        int expected = 2;
+        int actual = deck.peekBack();
+        assertEquals(expected, actual);
+    }
 }
