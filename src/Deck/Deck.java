@@ -21,6 +21,10 @@ public class Deck<T> {
         return array.get(0);
     }
 
+    public void pushBack(T value) {
+        array.add(value);
+    }
+
     public int getSize() {
         return array.getSize();
     }
@@ -33,7 +37,6 @@ public class Deck<T> {
         if (error.equals(deckIsEmptyError)) {
             return deckIsEmptyError;
         }
-
         return "No error message";
     }
 }
