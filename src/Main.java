@@ -6,6 +6,6 @@ import Qeue.*;
 public class Main {
 
     public static void main(String[] args) {
-        // Task 6 complete
+        // Task 8 complete
     }
 }
