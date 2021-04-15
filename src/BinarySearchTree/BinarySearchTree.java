@@ -2,7 +2,6 @@ package BinarySearchTree;
 
 public class BinarySearchTree {
     Item root;
-
     String NOT_FOUND_ERROR = "Not found";
 
     public BinarySearchTree() {
