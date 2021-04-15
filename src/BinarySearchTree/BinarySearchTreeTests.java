@@ -90,4 +90,32 @@ public class BinarySearchTreeTests {
         assertThrows(RuntimeException.class, () -> tree.successor(tree.search("t")), error_message);
     }
 
+    @Test
+    public void predecessor_normalTest() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        tree.insert("g");
+        tree.insert("q");
+        tree.insert("d");
+        tree.insert("t");
+        tree.insert("j");
+
+        String expected = "g";
+        String actual = tree.predecessor(tree.search("j")).key;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void predecessor_NotFound_Exception() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        tree.insert("g");
+        tree.insert("q");
+        tree.insert("d");
+        tree.insert("t");
+        tree.insert("j");
+
+        String error_message = "Not found";
+        assertThrows(RuntimeException.class, () -> tree.predecessor(tree.search("d")), error_message);
+    }
 }

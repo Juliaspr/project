@@ -65,8 +65,32 @@ public class BinarySearchTree {
                 }
                 parentExists = input.parent != null;
             }
-            throw new RuntimeException(NOT_FOUND_ERROR);
         }
+        throw new RuntimeException(NOT_FOUND_ERROR);
+    }
+
+    public Item predecessor(Item node) {
+        boolean leftChildExists = node.leftChild != null;
+        if (leftChildExists) {
+            node = node.leftChild;
+            while (node.rightChild != null) {
+                node = node.rightChild;
+            }
+            return node;
+        }
+        else {
+            boolean parentExists = node.parent != null;
+            while (parentExists) {
+                if (node.parent.rightChild.equals(node)) {
+                    return node.parent;
+                } else {
+                    node = node.parent;
+                }
+                parentExists = node.parent != null;
+            }
+        }
+
+        throw new RuntimeException(NOT_FOUND_ERROR);
     }
 
     private Item searchRec(String key, Item node) {
