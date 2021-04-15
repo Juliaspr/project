@@ -23,6 +23,14 @@ public class BinarySearchTree {
         return searchRec(key, root);
     }
 
+    public Item min() {
+        Item node = root;
+        while (node.leftChild != null) {
+            node = node.leftChild;
+        }
+        return node;
+    }
+
     private Item searchRec(String key, Item node) {
         if (node == null) {
             throw new RuntimeException("Not found");

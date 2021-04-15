@@ -34,4 +34,17 @@ public class BinarySearchTreeTests {
         String error_message = "Not found";
         assertThrows(RuntimeException.class, () -> tree.search("g"), error_message);
     }
+
+    @Test
+    public void min_normalTest() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        tree.insert("ab");
+        tree.insert("abcd");
+        tree.insert("a");
+
+        String expected = "a";
+        String actual = tree.min().key;
+        assertEquals(expected, actual);
+    }
 }
