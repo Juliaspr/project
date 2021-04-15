@@ -69,28 +69,77 @@ public class BinarySearchTree {
         throw new RuntimeException(NOT_FOUND_ERROR);
     }
 
-    public Item predecessor(Item node) {
-        boolean leftChildExists = node.leftChild != null;
+    public Item predecessor(Item input) {
+        boolean leftChildExists = input.leftChild != null;
         if (leftChildExists) {
-            node = node.leftChild;
-            while (node.rightChild != null) {
-                node = node.rightChild;
+            input = input.leftChild;
+            while (input.rightChild != null) {
+                input = input.rightChild;
             }
-            return node;
+            return input;
         }
         else {
-            boolean parentExists = node.parent != null;
+            boolean parentExists = input.parent != null;
             while (parentExists) {
-                if (node.parent.rightChild.equals(node)) {
-                    return node.parent;
+                if (input.parent.rightChild.equals(input)) {
+                    return input.parent;
                 } else {
-                    node = node.parent;
+                    input = input.parent;
                 }
-                parentExists = node.parent != null;
+                parentExists = input.parent != null;
+            }
+        }
+        throw new RuntimeException(NOT_FOUND_ERROR);
+    }
+
+    public void delete(String key) {
+        Item deletionNode = search(key);
+
+        int children = 0;
+
+        if (deletionNode.leftChild != null) {
+            children++;
+        }
+
+        if (deletionNode.rightChild != null) {
+            children++;
+        }
+
+        boolean isLeftChild = false;
+        if (deletionNode.parent.leftChild != null) {
+            isLeftChild = deletionNode.parent.leftChild.equals(deletionNode);
+        }
+
+        if (children == 1) {
+            if (deletionNode.leftChild != null) {
+                Item newChild = deletionNode.leftChild;
+                deletionNode.leftChild.parent = null;
+                if (isLeftChild) {
+                    deletionNode.parent.leftChild = newChild;
+                } else {
+                    deletionNode.parent.rightChild = newChild;
+                }
+                newChild.parent = deletionNode.parent;
+
+            } else {
+                Item newChild = deletionNode.rightChild;
+                deletionNode.rightChild.parent = null;
+                if (isLeftChild) {
+                    deletionNode.parent.leftChild = newChild;
+                } else {
+                    deletionNode.parent.rightChild = newChild;
+                }
+                newChild.parent = deletionNode.parent;
             }
         }
 
-        throw new RuntimeException(NOT_FOUND_ERROR);
+        else if (children == 0) {
+            if (isLeftChild) {
+                deletionNode.parent.leftChild = null;
+            } else {
+                deletionNode.parent.rightChild = null;
+            }
+        }
     }
 
     private Item searchRec(String key, Item node) {

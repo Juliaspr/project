@@ -118,4 +118,22 @@ public class BinarySearchTreeTests {
         String error_message = "Not found";
         assertThrows(RuntimeException.class, () -> tree.predecessor(tree.search("d")), error_message);
     }
+
+    @Test
+    public void delete_normalTest() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        tree.insert("g");
+        tree.insert("q");
+        tree.insert("d");
+        tree.insert("t");
+        tree.insert("j");
+        tree.insert("z");
+
+        tree.delete("t");
+
+        String expected = "z";
+        String actual = tree.successor(tree.search("q")).key;
+        assertEquals(expected, actual);
+    }
 }
