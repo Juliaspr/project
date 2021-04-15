@@ -31,6 +31,14 @@ public class BinarySearchTree {
         return node;
     }
 
+    public Item max() {
+        Item node = root;
+        while (node.rightChild != null) {
+            node = node.rightChild;
+        }
+        return node;
+    }
+
     private Item searchRec(String key, Item node) {
         if (node == null) {
             throw new RuntimeException("Not found");

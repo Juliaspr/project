@@ -47,4 +47,17 @@ public class BinarySearchTreeTests {
         String actual = tree.min().key;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void max_normalTest() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        tree.insert("ab");
+        tree.insert("abcd");
+        tree.insert("a");
+
+        String expected = "abcd";
+        String actual = tree.max().key;
+        assertEquals(expected, actual);
+    }
 }
