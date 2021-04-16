@@ -136,4 +136,19 @@ public class BinarySearchTreeTests {
         String actual = tree.successor(tree.search("q")).key;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void delete_notFound_Exception() {
+        BinarySearchTree tree = new BinarySearchTree();
+
+        tree.insert("g");
+        tree.insert("q");
+        tree.insert("d");
+        tree.insert("t");
+        tree.insert("j");
+        tree.insert("z");
+
+        String error_message = "Not found";
+        assertThrows(RuntimeException.class, () -> tree.delete("ger"), error_message);
+    }
 }
