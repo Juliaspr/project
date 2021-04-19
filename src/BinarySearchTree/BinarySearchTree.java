@@ -109,6 +109,20 @@ public class BinarySearchTree {
             isLeftChild = deletionNode.parent.leftChild.equals(deletionNode);
         }
 
+        if (children > 1) {
+            if (isLeftChild) {
+                Item nextItem = successor(deletionNode);
+                nextItem.leftChild = deletionNode.leftChild;
+                deletionNode.parent.leftChild = null;
+                deletionNode.parent.leftChild = nextItem;
+            } else {
+                Item nextItem = successor(deletionNode);
+                nextItem.leftChild = deletionNode.leftChild;
+                deletionNode.parent.rightChild = null;
+                deletionNode.parent.rightChild = nextItem;
+            }
+        }
+
         if (children == 1) {
             if (deletionNode.leftChild != null) {
                 Item newChild = deletionNode.leftChild;
