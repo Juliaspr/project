@@ -130,7 +130,7 @@ public class BinarySearchTreeTests {
         tree.insert("j");
         tree.insert("z");
 
-        tree.delete("t");
+        tree.delete(tree.search("t"));
 
         String expected = "z";
         String actual = tree.successor(tree.search("q")).key;
@@ -149,6 +149,6 @@ public class BinarySearchTreeTests {
         tree.insert("z");
 
         String error_message = "Not found";
-        assertThrows(RuntimeException.class, () -> tree.delete("ger"), error_message);
+        assertThrows(RuntimeException.class, () -> tree.delete(tree.search("ger")), error_message);
     }
 }

@@ -91,18 +91,10 @@ public class BinarySearchTree {
         throw new RuntimeException(NOT_FOUND_ERROR);
     }
 
-    public void delete(String key) {
-        Item deletionNode = search(key);
-
+    public Item delete(Item deletionNode) {
         int children = 0;
-
-        if (deletionNode.leftChild != null) {
-            children++;
-        }
-
-        if (deletionNode.rightChild != null) {
-            children++;
-        }
+        if (deletionNode.leftChild != null) children++;
+        if (deletionNode.rightChild != null) children++;
 
         boolean isLeftChild = false;
         if (deletionNode.parent.leftChild != null) {
@@ -111,47 +103,66 @@ public class BinarySearchTree {
 
         if (children > 1) {
             if (isLeftChild) {
-                Item nextItem = successor(deletionNode);
-                nextItem.leftChild = deletionNode.leftChild;
-                deletionNode.parent.leftChild = null;
-                deletionNode.parent.leftChild = nextItem;
+                Item nextNode = successor(deletionNode);
+                nextNode.leftChild = deletionNode.leftChild;
+                nextNode.leftChild = nextNode;
+                nextNode.leftChild.parent = nextNode;
+                nextNode.parent = nextNode;
+                return nextNode;
             } else {
-                Item nextItem = successor(deletionNode);
-                nextItem.leftChild = deletionNode.leftChild;
-                deletionNode.parent.rightChild = null;
-                deletionNode.parent.rightChild = nextItem;
+                Item nextNode = successor(deletionNode);
+                nextNode.leftChild = deletionNode.leftChild;
+                nextNode.rightChild = nextNode;
+                nextNode.rightChild.parent = nextNode;
+                nextNode.parent = nextNode;
+                return nextNode;
             }
         }
 
         if (children == 1) {
+
             if (deletionNode.leftChild != null) {
-                Item newChild = deletionNode.leftChild;
-                deletionNode.leftChild.parent = null;
+
                 if (isLeftChild) {
+                    Item newChild = deletionNode.leftChild;
+                    deletionNode.leftChild.parent = null;
                     deletionNode.parent.leftChild = newChild;
+                    newChild.parent = deletionNode.parent;
+                    return deletionNode.parent.leftChild;
                 } else {
+                    Item newChild = deletionNode.leftChild;
+                    deletionNode.leftChild.parent = null;
                     deletionNode.parent.rightChild = newChild;
+                    newChild.parent = deletionNode.parent;
+                    return deletionNode.parent.rightChild;
                 }
-                newChild.parent = deletionNode.parent;
 
             } else {
-                Item newChild = deletionNode.rightChild;
-                deletionNode.rightChild.parent = null;
+
                 if (isLeftChild) {
+                    Item newChild = deletionNode.rightChild;
+                    deletionNode.rightChild.parent = null;
                     deletionNode.parent.leftChild = newChild;
+                    newChild.parent = deletionNode.parent;
+                    return deletionNode.parent.leftChild;
                 } else {
+                    Item newChild = deletionNode.rightChild;
+                    deletionNode.rightChild.parent = null;
                     deletionNode.parent.rightChild = newChild;
+                    newChild.parent= deletionNode.parent;
+                    return deletionNode.parent.rightChild;
                 }
-                newChild.parent = deletionNode.parent;
             }
         }
 
-        else if (children == 0) {
+        else {
             if (isLeftChild) {
                 deletionNode.parent.leftChild = null;
             } else {
                 deletionNode.parent.rightChild = null;
             }
+
+            return deletionNode.parent;
         }
     }
 
@@ -172,25 +183,27 @@ public class BinarySearchTree {
         }
     }
 
-    private void insertRec(String key, Item node) {
+    private Item insertRec(String key, Item node) {
 
         // левая часть
-        if (key.compareTo(node.key) < 0) {
+        if (key.compareTo(node.key) <= 0) {
             if (node.leftChild != null) {
-                insertRec(key, node.leftChild);
+                return insertRec(key, node.leftChild);
             } else {
                 node.leftChild = new Item(key);
                 node.leftChild.parent = node;
+                return node.leftChild;
             }
         }
 
         // правая часть
-        if (key.compareTo(node.key) >= 0) {
+        else {
             if (node.rightChild != null) {
-                insertRec(key, node.rightChild);
+                return insertRec(key, node.rightChild);
             } else {
                 node.rightChild = new Item(key);
                 node.rightChild.parent = node;
+                return node.rightChild;
             }
         }
     }
