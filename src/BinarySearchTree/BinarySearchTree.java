@@ -12,13 +12,13 @@ public class BinarySearchTree {
         root = new Item(key);
     }
 
-    public void insert(String key) {
-        if (root.key == null) {
-            root = new Item(key);
-            return;
-        }
-        insertRec(key, root);
-    }
+//    public Item insertPrivate(String key) {
+//        if (root.key == null) {
+//            root = new Item(key);
+//            return;
+//        }
+//        insertRec(key, root);
+//    }
 
     private void rotateRight(Item input) {
         Item parent = input.parent;
@@ -54,6 +54,33 @@ public class BinarySearchTree {
             }
         }
         updateRoot();
+    }
+
+    public void balance(Item input) {
+
+        if (input == null) {
+            return;
+        }
+
+        if (input.balance() > 1) {
+            if (input.leftChild.balance() > 0) {
+                rotateRight(input);
+            } else {
+                rotateLeft(input.leftChild);
+                rotateRight(input);
+            }
+        }
+
+        else if (input.balance() < -1) {
+            if (input.rightChild.balance() < 0) {
+                rotateLeft(input);
+            } else {
+                rotateRight(input.rightChild);
+                rotateLeft(input);
+            }
+        } else {
+            balance(input.parent);
+        }
     }
 
     public Item search(String key) {
