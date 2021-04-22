@@ -20,6 +20,42 @@ public class BinarySearchTree {
         insertRec(key, root);
     }
 
+    private void rotateRight(Item input) {
+        Item parent = input.parent;
+        Item leftChild = input.leftChild;
+        input.leftChild = leftChild.rightChild;
+        leftChild.rightChild = input;
+        leftChild.parent = parent;
+        input.parent = leftChild;
+
+        if (parent != null) {
+            if (parent.leftChild == input) {
+                parent.leftChild = leftChild;
+            } else {
+                parent.rightChild = leftChild;
+            }
+        }
+        updateRoot();
+    }
+
+    private void rotateLeft(Item input) {
+        Item parent = input.parent;
+        Item rightChild = input.rightChild;
+        input.rightChild = rightChild.leftChild;
+        rightChild.leftChild = input;
+        input.parent = rightChild;
+        rightChild.parent = parent;
+
+        if (parent != null) {
+            if (parent.leftChild == input) {
+                parent.leftChild = rightChild;
+            } else {
+                parent.rightChild = rightChild;
+            }
+        }
+        updateRoot();
+    }
+
     public Item search(String key) {
         return searchRec(key, root);
     }
@@ -206,5 +242,13 @@ public class BinarySearchTree {
                 return node.rightChild;
             }
         }
+    }
+
+    private void updateRoot() {
+        Item first = min();
+        while (first.parent != null) {
+            first = first.parent;
+        }
+        root = first;
     }
 }
