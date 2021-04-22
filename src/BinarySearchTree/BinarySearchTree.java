@@ -1,5 +1,4 @@
 package BinarySearchTree;
-
 public class BinarySearchTree {
     Item root;
     String NOT_FOUND_ERROR = "Not found";
@@ -12,13 +11,16 @@ public class BinarySearchTree {
         root = new Item(key);
     }
 
-//    public Item insertPrivate(String key) {
-//        if (root.key == null) {
-//            root = new Item(key);
-//            return;
-//        }
-//        insertRec(key, root);
-//    }
+    public void insert(String key) {
+        if (root.key == null) {
+            root = new Item(key);
+            return;
+        }
+        Item newNode = insertRec(key, root);
+        if (newNode != null) {
+            balance(newNode);
+        }
+    }
 
     private void rotateRight(Item input) {
         Item parent = input.parent;
