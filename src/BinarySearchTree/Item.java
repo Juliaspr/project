@@ -37,4 +37,22 @@ public class Item {
             }
         }
     }
+
+    public int balance() {
+        int left;
+        int right;
+
+        if (leftChild == null) {
+            left = -1;
+        } else {
+            left = leftChild.height();
+        }
+
+        if (rightChild == null) {
+            right = -1;
+        } else {
+            right = rightChild.height();
+        }
+        return left - right;
+    }
 }
