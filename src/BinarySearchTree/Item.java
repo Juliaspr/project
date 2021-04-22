@@ -2,9 +2,9 @@ package BinarySearchTree;
 
 public class Item {
     public String key;
-    Item leftChild;
-    Item rightChild;
-    Item parent;
+    public Item leftChild;
+    public Item rightChild;
+    public Item parent;
 
     public Item() {
         key = null;
@@ -18,5 +18,23 @@ public class Item {
         leftChild = null;
         rightChild = null;
         parent = null;
+    }
+
+    public int height() {
+        if (leftChild == null & rightChild == null) {
+            return -1;
+        }
+
+        else if (leftChild == null || rightChild == null) {
+            return 0;
+        }
+
+        else {
+            if (leftChild.height() > rightChild.height()) {
+                return leftChild.height();
+            } else {
+                return rightChild.height();
+            }
+        }
     }
 }
