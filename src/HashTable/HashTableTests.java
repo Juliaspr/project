@@ -12,5 +12,11 @@ public class HashTableTests {
     @Test
     public void insert_doNothing() {
         HashTable table = new HashTable();
+
+        table.input(5);
+        table.input(10);
+
+        int expected = 10;
+        Object actual = table.get(0).getElement(1).getData();
     }
 }

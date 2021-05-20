@@ -20,6 +20,14 @@ public class HashTable {
 
     public void input(int data) {
         int index = data % size;
-        this.data[index].insert(new int[] {index, data});
+        this.data[index].insert(new TableObject(index, data));
+    }
+
+    public DoublyLinkedList<TableObject> get(int index) {
+        if (index >= size || index < 0) {
+            return null;
+        }
+
+        return data[index];
     }
 }
