@@ -8,4 +8,9 @@ public class HashTableTests {
     public void init_test() {
         HashTable table = new HashTable();
     }
+
+    @Test
+    public void insert_doNothing() {
+        HashTable table = new HashTable();
+    }
 }

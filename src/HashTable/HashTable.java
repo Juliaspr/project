@@ -12,10 +12,14 @@ public class HashTable {
     public HashTable() {
         size = 5;
         data = new DoublyLinkedList[size];
+
+        for (int i = 0; i < size; i++) {
+            data[i] = new DoublyLinkedList();
+        }
     }
 
-    public HashTable(int size) {
-        this.size = size;
-        data = new DoublyLinkedList[size];
+    public void input(int data) {
+        int index = data % size;
+        this.data[index].insert(new int[] {index, data});
     }
 }
