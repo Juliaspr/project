@@ -238,6 +238,13 @@ public class DoublyLinkedList<T> {
         end = newElement;
     }
 
+    public Boolean isEmpty() {
+        if (size > 0) {
+            return false;
+        }
+        return true;
+    }
+
     public void printAll() {
         if (size == 0) {
             /* If list is empty */

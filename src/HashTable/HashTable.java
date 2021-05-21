@@ -7,14 +7,14 @@ public class HashTable {
     // object[1] - data of the object
 
     int size;
-    DoublyLinkedList[] data;
+    DoublyLinkedList<TableObject>[] data;
 
     public HashTable() {
         size = 5;
         data = new DoublyLinkedList[size];
 
         for (int i = 0; i < size; i++) {
-            data[i] = new DoublyLinkedList();
+            data[i] = new DoublyLinkedList<TableObject>();
         }
     }
 
@@ -29,5 +29,13 @@ public class HashTable {
         }
 
         return data[index];
+    }
+
+    public void remove(int index) {
+        if (index >= size || index < 0) {
+            return;
+        }
+
+        data[index] = new DoublyLinkedList<TableObject>();
     }
 }

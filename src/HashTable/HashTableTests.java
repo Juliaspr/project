@@ -67,4 +67,26 @@ public class HashTableTests {
         actual = table.get(-1);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void remove_normal() {
+        HashTable table = new HashTable();
+
+        table.input(5);
+        table.input(10);
+
+        table.remove(0);
+
+        boolean expected = true;
+        boolean actual = table.get(0).isEmpty();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void remove_outOfBounds_doNothing() {
+        HashTable table = new HashTable();
+
+        table.remove(-1);
+        table.remove(100);
+    }
 }
