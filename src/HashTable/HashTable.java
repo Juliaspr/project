@@ -1,26 +1,30 @@
 package HashTable;
 import DoublyLinkedList.*;
+import DynamicArray.*;
 
 public class HashTable {
-    // each one of the table object is an array
-    // object[0] - key of the object
-    // object[1] - data of the object
-
-    int size;
-    DoublyLinkedList<TableObject>[] data;
+    int size = 5;
+    DynamicArray<DoublyLinkedList<TableObject>> data;
 
     public HashTable() {
-        size = 5;
-        data = new DoublyLinkedList[size];
-
+        data = new DynamicArray<DoublyLinkedList<TableObject>>(size);
         for (int i = 0; i < size; i++) {
-            data[i] = new DoublyLinkedList<TableObject>();
+            data.insert(i, new DoublyLinkedList<TableObject>());
+        }
+    }
+
+    public HashTable(int size) {
+        this.size = size;
+        data = new DynamicArray<DoublyLinkedList<TableObject>>(this.size);
+
+        for (int i = 0; i < this.size; i++) {
+            data.insert(i, new DoublyLinkedList<TableObject>());
         }
     }
 
     public void input(int data) {
         int index = data % size;
-        this.data[index].insert(new TableObject(index, data));
+        this.data.get(index).insert(new TableObject(index, data));
     }
 
     public DoublyLinkedList<TableObject> get(int index) {
@@ -28,7 +32,7 @@ public class HashTable {
             return null;
         }
 
-        return data[index];
+        return data.get(index);
     }
 
     public void remove(int index) {
@@ -36,6 +40,6 @@ public class HashTable {
             return;
         }
 
-        data[index] = new DoublyLinkedList<TableObject>();
+        data.insert(index, new DoublyLinkedList<TableObject>());
     }
 }
