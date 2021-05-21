@@ -9,7 +9,16 @@ public class DoublyLinkedList<T> {
     private final String ERROR_IndexOutOfRange = "Index is out of range";
 
     public int getSize() {
-        return size;
+        Element currentElement = start;
+
+        int counter = 0;
+        while (currentElement.getNext() != null) {
+            counter++;
+            currentElement = currentElement.getNext();
+        }
+        counter++;
+
+        return counter;
     }
 
     public boolean contains(T data) {
