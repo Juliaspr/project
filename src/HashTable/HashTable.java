@@ -22,9 +22,10 @@ public class HashTable {
         }
     }
 
-    public void input(int data) {
-        int index = data % size;
-        this.data.get(index).insert(new TableObject(index, data));
+    public void input(String data) {
+        TableObject item = new TableObject(data);
+        int index = item.key % size;
+        this.data.get(index).insert(item);
     }
 
     public DoublyLinkedList<TableObject> get(int index) {
@@ -41,5 +42,17 @@ public class HashTable {
         }
 
         data.insert(index, new DoublyLinkedList<TableObject>());
+    }
+
+    public void printAll() {
+        for (int i = 0; i < size; i++) {
+            System.out.println("HashTable[" + i + "]:");
+            DoublyLinkedList<TableObject> currentList = data.get(i);
+
+            for (int f = 0; f < currentList.getSize(); f++) {
+                System.out.print("[" + f + "] " + "Key: " + currentList.getElement(f).getData().key);
+                System.out.println("; Data: " + currentList.getElement(f).getData().data);
+            }
+        }
     }
 }

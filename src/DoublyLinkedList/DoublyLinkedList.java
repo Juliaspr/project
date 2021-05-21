@@ -248,7 +248,8 @@ public class DoublyLinkedList<T> {
     public void printAll() {
         if (size == 0) {
             /* If list is empty */
-            System.out.println("The list is empty");
+//            System.out.println("The list is empty");
+            System.out.print("");
             return;
         }
 
