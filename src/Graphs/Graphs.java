@@ -37,4 +37,9 @@ public class Graphs {
             }
         }
     }
+
+    public void add(int source, int destination) {
+        graph.get(source).add(destination);
+        graph.get(destination).add(source);
+    }
 }
