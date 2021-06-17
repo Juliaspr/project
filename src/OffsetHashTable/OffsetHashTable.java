@@ -26,16 +26,24 @@ public class OffsetHashTable {
 
     public void remove(String data) {
         int index = get_ascii(data) % TABLE_SIZE;
-        if (table.get(index).data.equals(data)) {
-            table.remove(index);
-        } else {
-            for (int i = index; i < table.getSize(); i++) {
-                if (table.get(i).data.equals(data) && table.get(i) != null) {
-                    table.remove(i);
-                    return;
-                }
+
+        for (int i = index; i < table.getSize(); i++) {
+            if (table.get(i).data.equals(data) && table.get(i) != null) {
+                table.remove(i);
+                return;
             }
         }
+    }
+
+    public TableObject get_object(String data) {
+        int key = get_ascii(data) % TABLE_SIZE;
+
+        for (int i = 0; i < table.getSize(); i++) {
+            if (table.get(i) != null && table.get(i).data.equals(data)) {
+                return table.get(i);
+            }
+        }
+        return null;
     }
 
     public int hash(int key) {
