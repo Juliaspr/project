@@ -22,25 +22,6 @@ public class OffsetHashTableTests {
     }
 
     @Test
-    public void insert_collision() {
-        OffsetHashTable table = new OffsetHashTable();
-        table.input("a");
-        table.input("b");
-        table.input("c");
-        table.input("d");
-        table.input("e");
-        table.input("f");
-        table.input("g");
-        table.input("Some long string");
-        table.input("Another long string");
-        table.input("Other long string");
-
-        String expected = "Some long string";
-        String actual = table.get_object("Some long string").data;
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void insert_stressTesting() {
         OffsetHashTable table = new OffsetHashTable();
         Random rand = new Random();
@@ -68,10 +49,10 @@ public class OffsetHashTableTests {
         table.input("b");
         table.input("c");
 
-        table.remove("c");
+        table.remove("b");
 
         Object expected = null;
-        Object actual = table.get_object("c");
+        Object actual = table.get_object("b");
         assertEquals(expected, actual);
     }
 }

@@ -36,7 +36,7 @@ public class OffsetHashTable {
         if (table.get(index).data.equals(data)) {
             table.remove(index);
         } else {
-            for (int i = index; i < table.getSize(); i++) {
+            for (int i = index; i < table.getSize() - 1; i++) {
                 if (table.get(i).data.equals(data) && table.get(i) != null) {
                     table.remove(i);
                     return;
@@ -51,7 +51,7 @@ public class OffsetHashTable {
         if (table.get(key).data.equals(data)) {
             return table.get(key);
         } else {
-            for (int i = 0; i < table.getSize(); i++) {
+            for (int i = 0; i < table.getSize() - 1; i++) {
 
                 if (table.get(i) != null && table.get(i).data.equals(data)) {
                     return table.get(i);
